@@ -4,18 +4,32 @@ class Bootloader extends Phaser.Scene {
     }
 
     preload() {
-        console.log('Bootloader');
-        this.load.setPath('./assets/');
+        this.load.path = "./assets/"
+        this.load.image([
+            "background",
+            "bomb",
+            "floor",
+            "life",
+            "logo",
+            "tomate_item",
+            "wall",
+        ]);
 
-        this.load.image('logo_gamma', 'logo_gamma.png');
+        this.load.audio("bongo", "bongojam_f.mp3");
+        this.load.audio("pop", "popjam_f.mp3");
+        this.load.audio("draw", "drawjam_f.mp3");
 
-        this.load.on('complete', () => {
-            console.log('Load complete');
-        });
-    }
+        this.load.image("font", "font/font.png");
+        this.load.json("fontData", "font/font.json");
 
-    create() {
-        this.add.image(this.scale.width / 2, this.scale.height / 2, 'logo_gamma');
+        this.load.atlas("tomato", "tomato/tomato.png", "tomato/tomato_atlas.json");
+        this.load.animation("tomatoAnim", "tomato/tomato_anim.json");
+        this.load.on("complete", () => {
+            const fontData = this.cache.json.get("fontData");
+            this.cache.bitmapFont.add("pixelFont", Phaser.GameObjects.RetroFont.Parse(this, fontData));
+            
+            this.scene.start("Play");
+        })
     }
 }
 export default Bootloader;
