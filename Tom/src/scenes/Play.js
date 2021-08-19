@@ -1,4 +1,5 @@
 import Tomato from "../Player/Tomato.js";
+import Bombs from "../Objects/Bombs.js";
 
 class Play extends Phaser.Scene{
     constructor(){
@@ -38,6 +39,12 @@ class Play extends Phaser.Scene{
 
         this.wall_floor.getChildren()[2].setOffset(0, 15);
 
+        // Bombs
+        this.bombsGroup = new Bombs({
+            physicsWorld: this.physics.world,
+            scene: this,
+        });
+
         // agregando al personaje
         // this.tomate = this.physics.add.sprite(100, 100, "tomato")
         // .setScale(2);
@@ -48,11 +55,13 @@ class Play extends Phaser.Scene{
         });
         this.tomato.setScale(2);
 
-        this.physics.add.collider([this.tomato], this.wall_floor);
+        // agregamos collider para que el personaje rebote con los bordes del mundo, tambien lo hacemos para las bombas
+        this.physics.add.collider([this.tomato, this.bombsGroup], this.wall_floor);
     }
 
     update(){
         this.tomato.update();
+        this.bombsGroup.update();
     }
 }
 
