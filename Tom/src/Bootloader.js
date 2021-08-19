@@ -16,8 +16,8 @@ class Bootloader extends Phaser.Scene {
         ]);
 
         this.load.audio("bongo", "bongojam_f.mp3");
-        this.load.audio("pop", "popjam_f.mp3");
-        this.load.audio("draw", "drawjam_f.mp3");
+        this.load.audio("pop", "pop.mp3");
+        this.load.audio("draw", "draw.mp3");
 
         this.load.image("font", "font/font.png");
         this.load.json("fontData", "font/font.json");

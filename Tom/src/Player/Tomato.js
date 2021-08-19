@@ -68,7 +68,26 @@ class Tomato extends Phaser.GameObjects.Sprite{
 
     bombCollision(){
         if(!this.hitDelay){
-            
+            console.log("colisiona");
+            this.hitDelay = true;
+            this.life--;
+            this.scene.sound.play("draw");
+            // emitios un evento
+            this.scene.registry.events.emit("remove_life");
+
+            if (!this.life){
+                this.scene.registry.events.emit("game_over");
+            }
+
+            this.setTint(0x1abc9c);
+            // esperamos 0.6 segundos y volvemos a hitDelay para false
+            this.scene.time.addEvent({
+                delay: 600,
+                callback: () => {
+                    this.hitDelay = false;
+                    this.clearTint();
+                }
+            })
         }
     }
 

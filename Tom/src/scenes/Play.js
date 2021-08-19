@@ -55,14 +55,20 @@ class Play extends Phaser.Scene{
         });
         this.tomato.setScale(2);
 
-        // agregamos collider para que el personaje rebote con los bordes del mundo, tambien lo hacemos para las bombas
+        // agregamos collider para que el personaje rebote con los bordes del mundo, tambien lo hacemos para las bombas, esta colision seria solo con las paredes
         this.physics.add.collider([this.tomato, this.bombsGroup], this.wall_floor);
+
+        // esta coleccion seria para el personaje y las bombas, en este caso se usa overlap
+        this.physics.add.overlap(this.tomato, this.bombsGroup, () => {
+            this.tomato.bombCollision();
+        })
     }
 
     update(){
         this.tomato.update();
         this.bombsGroup.update();
     }
+
 }
 
 export default Play;
