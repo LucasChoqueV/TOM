@@ -17,7 +17,7 @@ class TomatoItem extends Phaser.Physics.Arcade.StaticGroup{
     destroy(){
         this.children.entries[0].destroy();
         this.scene.sound.play("pop");
-        this.registry.events.emit("update_points");
+        this.scene.registry.events.emit("update_points");
         this.addTomatoItem();
     }
 }

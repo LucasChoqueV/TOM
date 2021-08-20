@@ -11,6 +11,8 @@ class Play extends Phaser.Scene{
 
     init(){
         console.log("Play initialized");
+        // la UI, que en realidad serian el HUD se crean en paralelo con la scene play
+        this.scene.launch("UI");
     }
 
     create(){

@@ -71,7 +71,7 @@ class Tomato extends Phaser.GameObjects.Sprite{
             console.log("colisiona");
             this.hitDelay = true;
             this.life--;
-            this.scene.sound.play("draw");
+            //this.scene.sound.play("draw");
             // emitios un evento
             this.scene.registry.events.emit("remove_life");
 
@@ -87,7 +87,7 @@ class Tomato extends Phaser.GameObjects.Sprite{
                     this.hitDelay = false;
                     this.clearTint();
                 }
-            })
+            });
         }
     }
 
