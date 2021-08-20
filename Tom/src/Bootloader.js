@@ -11,7 +11,7 @@ class Bootloader extends Phaser.Scene {
             "floor",
             "life",
             "logo",
-            "tomate_item",
+            "tomato_item",
             "wall",
         ]);
 

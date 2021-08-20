@@ -1,5 +1,6 @@
 import Tomato from "../Player/Tomato.js";
 import Bombs from "../Objects/Bombs.js";
+import TomatoItem from "../Objects/TomatoItem.js";
 
 class Play extends Phaser.Scene{
     constructor(){
@@ -39,6 +40,11 @@ class Play extends Phaser.Scene{
 
         this.wall_floor.getChildren()[2].setOffset(0, 15);
 
+        this.tomatoItems = new TomatoItem({
+            physicsWorld: this.physics.world,
+            scene: this,
+        });
+
         // Bombs
         this.bombsGroup = new Bombs({
             physicsWorld: this.physics.world,
@@ -61,6 +67,11 @@ class Play extends Phaser.Scene{
         // esta coleccion seria para el personaje y las bombas, en este caso se usa overlap
         this.physics.add.overlap(this.tomato, this.bombsGroup, () => {
             this.tomato.bombCollision();
+        })
+
+        this.physics.add.overlap(this.tomato, this.tomatoItems, () => {
+            this.tomatoItems.destroy();
+            this.bombsGroup.addBomb();
         })
     }
 
