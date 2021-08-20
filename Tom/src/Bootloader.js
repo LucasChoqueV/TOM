@@ -25,10 +25,11 @@ class Bootloader extends Phaser.Scene {
         this.load.atlas("tomato", "tomato/tomato.png", "tomato/tomato_atlas.json");
         this.load.animation("tomatoAnim", "tomato/tomato_anim.json");
         this.load.on("complete", () => {
+            this.sound.play("bongo", {loop: true});
             const fontData = this.cache.json.get("fontData");
             this.cache.bitmapFont.add("pixelFont", Phaser.GameObjects.RetroFont.Parse(this, fontData));
             
-            this.scene.start("Play");
+            this.scene.start("Menu", 0);
         })
     }
 }

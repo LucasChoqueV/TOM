@@ -43,8 +43,8 @@ class UI extends Phaser.Scene{
         // cuando el juego se termina primero se deben limpiar la lista de eventos porque sino se acumulan
         this.registry.events.on("game_over", () =>{
             this.registry.events.removeAllListeners();
-            this.scene.start("Menu");
-
+            this.scene.start("Menu", this.actualPoints);
+            this.actualPoints = 0;
         });
 
         // actualizar puntos
